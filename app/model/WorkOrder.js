@@ -41,14 +41,14 @@ Ext.define("BaristaStuff.model.WorkOrder", {
 				model: 'BaristaStuff.model.Time',
 				name: 'Time',
 				primaryKey: 'id',
-				foreignKey: 'wordOrderId',
+				foreignKey: 'workOrderId',
 				foreignStore: 'Times'
 			},
 			{
 				model: 'BaristaStuff.model.Activity',
 				name: 'Activity',
 				primaryKey: 'id',
-				foreignKey: 'wordOrderId',
+				foreignKey: 'workOrderId',
 				foreignStore: 'Activities'
 			}
 		]

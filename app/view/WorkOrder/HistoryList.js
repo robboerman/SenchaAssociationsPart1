@@ -15,16 +15,16 @@ Ext.define('BaristaStuff.view.WorkOrder.HistoryList', {
 					'<td>{date:date("Y-m-j H:i")}</td>',
 				'</tr>',
 				'<tr>',
-					'<td>Description: </td>',
-					'<td>{description}</td>',
+					'<td style="vertical-align: top">Description: </td>',
+					'<td >{description}</td>',
 				'</tr>',
 				'<tr>',
-					'<td>Activities: </td>',
-					'<td>X, Y, Z</td>',
+					'<td style="vertical-align: top">Activities: </td>',
+					'<td><tpl if="activities.length == 0">No activities logged</tpl><tpl for="activities"><div>- {type}: {comments}</div></tpl></td>',
 				'</tr>',
 				'<tr>',
-					'<td>Logged time: </td>',
-					'<td>0:30</td>',
+					'<td style="vertical-align: top">Logged time: </td>',
+					'<td><tpl if="times.length == 0">No time logged</tpl><tpl for="times"><div>- {start:date("H:i")} -  {end:date("H:i")}</div></tpl></td>',
 				'</tr>',
 				'</table>',
 			'</div>'
@@ -47,14 +47,28 @@ Ext.define('BaristaStuff.view.WorkOrder.HistoryList', {
 		// 	docked: 'bottom',
 		// 	text: 'Load More...'
 		// }]
-	}
+	},
 
 	/**
 	 * The overridden prepareData function makes sure we use the flattened data array, without object nesting
 	 * If we use this we need to fetch the data in the itemTpl with {[values["ServiceRequest.description"]]}
 	 */
-	// prepareData: function(data, index, record) {console.log(data);
-	// 	return data;
-	// 	//return record.getFlattenedData(true);
- //    }
+	prepareData: function(data, index, record) {
+		var i;
+		var activities = record.getAssociatedRecords('Activity');
+		var activityArr = [];
+		for (var i=0;i<activities.length;i++) {
+			activityArr.push(activities[i].getData());
+		}
+		data.activities = activityArr;
+
+		var times = record.getAssociatedRecords('Time');
+		var timeArr = [];
+		for (var i=0;i<times.length;i++) {
+			timeArr.push(times[i].getData());
+		}
+		data.times = timeArr;
+
+		return data;
+    }
 });

@@ -8,6 +8,12 @@ Ext.define('BaristaStuff.store.Times', {
 			workOrderId: 1,
 			start: '2013-01-01 12:00',
 			end: '2013-01-01 13:00'
+		},
+		{
+			id: 2,
+			workOrderId: 2,
+			start: '2013-01-01 10:00',
+			end: '2013-01-01 11:00'
 		}
 		]
 	}
