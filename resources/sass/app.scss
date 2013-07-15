@@ -1,0 +1,68 @@
+// The following two lines import the default Sencha Touch theme. If you are building
+// a new theme, remove them and the add your own CSS on top of the base CSS (which
+// is already included in your app.json file).
+@import 'sencha-touch/default';
+@import 'sencha-touch/default/all';
+
+@include sencha-toolbar-ui('dark', $base-color,''); // override default toobar
+
+@include icon('home', 'H');
+@include icon('time', 't');
+@include icon('activity', 'x');
+@include icon('history', 'N');
+@include icon('add', '&');
+
+@import '_buttons';
+
+// Custom code goes here..
+
+// Examples of using the icon mixin:
+// @include icon('user');
+
+.x-list .x-list-item-tpl .x-list-disclosure {
+	top: 0;
+	margin-top: 40px;
+}
+
+.x-list-normal .x-list-header {
+	background-color: #fff;
+	background-image: none;
+	border-bottom: 1px solid #dedede;
+	border-top: none;
+}
+
+.x-list-normal .x-list-item.x-list-item-tpl, .x-list-normal .x-list-item .x-dock-horizontal {
+	border-top: none;
+	border-bottom: 1px solid #dedede;
+}
+
+.x-list-item {
+		background-color: white;
+		overflow: hidden; // wrap around floats
+		// margin:	5px 5px 0 5px;
+		// padding: 0 0 8px 0;
+		// min-height: 50px;
+		// border: 1px solid #f0f0f0;
+
+		-webkit-transition: background-color, color 150ms linear;
+		-webkit-transition-delay: 250ms;
+		// -moz-transition: background-color 300ms linear;
+		// -o-transition: background-color 300ms linear;
+		// -ms-transition: background-color 300ms linear;
+		// transition: background-color 300ms linear;
+
+		&.x-item-pressed, &.x-item-selected {
+			color: #fff;
+			background-color: $list-active-color;
+			-webkit-transition: background-color, color 0ms linear;
+			-webkit-transition-delay: 0s;
+			// -moz-transition: background-color 0ms linear;
+			// -o-transition: background-color 0ms linear;
+			// -ms-transition: background-color 0ms linear;
+			// transition: background-color 0ms linear;
+		}
+
+		// .fieldbuddy-list-item {
+		// 	position: relative;
+		// }
+	}

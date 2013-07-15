@@ -1,0 +1,47 @@
+@mixin app-toolbar-button($bg-color, $color) {
+    &,
+    .x-toolbar & {
+        border: none;
+        background-color: $bg-color;
+        color: $color;
+        background-image: none;
+
+        &.x-button-back:before,
+        &.x-button-forward:before {
+            background: darken($bg-color, 20%);
+        }
+
+        &,
+        &.x-button-back:after,
+        &.x-button-forward:after {
+            // @include background-gradient($bg-color, $type);
+        }
+
+        &.x-button-pressing, &.x-button-pressed, &.x-button-active {
+            &, &:after {
+                @include background-gradient(darken($bg-color, 3%), 'recessed');
+            }
+        }
+    }
+}
+
+@mixin app-button-ui($ui-label, $bg-color, $color) {
+    .x-button.x-button-#{$ui-label},
+    .x-button.x-button-#{$ui-label}-round,
+    .x-button.x-button-#{$ui-label}-small {
+        @include app-toolbar-button($bg-color, $color);
+    }
+
+    @if $include-border-radius {
+        .x-button.x-button-#{$ui-label}-round {
+            @extend .x-button-round;
+        }
+    }
+
+    .x-button.x-button-#{$ui-label}-small {
+        @extend .x-button-small;
+    }
+}
+
+
+@include app-button-ui('primary', $base-color, #fff);
